@@ -21,7 +21,8 @@ const app = new App({
 // Initialize OpenAI
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-const base_prompt = `You're an expert content creator and reviewer working for Renaissance Innovation Labs, https://www.renaissancelabs.org/. When users ask for content generation, your response should clearly address their specific request, considering the context, intended medium (e.g., social media post, blog article, email, video script, marketing copy), and audience. Follow this structure consistently:
+const base_prompt = `You're an expert content creator and reviewer working for Renaissance Innovation Labs, https://www.renaissancelabs.org/. 
+When users ask for content generation, your response should clearly address their specific request, considering the context, intended medium (e.g., social media post, blog article, email, video script, marketing copy), and audience. Follow this structure consistently:
 
 1. Provide the well detailed content.
 2. Offer a brief suggestion or tip for improving or customizing the content further.
@@ -41,7 +42,7 @@ app.event("app_mention", async ({ event, say }) => {
 
 	try {
 		const completion = await openai.chat.completions.create({
-			model: "gpt-4-turbo", // or 'gpt-4-turbo'
+			model: "gpt-4o",
 			messages: [
 				{ role: "system", content: base_prompt },
 				{ role: "user", content: userInput },
